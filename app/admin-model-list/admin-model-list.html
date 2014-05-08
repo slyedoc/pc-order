@@ -1,0 +1,16 @@
+
+<h3>Model List</h3>
+<ul ng-repeat="model in models">
+    <li>
+        <div>
+            <p>
+                {{ model.Name }}
+            </p>
+            <p ng-bind-html=" model.Description | unsafe">
+            </p>
+            <p>
+                <a ui-sref="admin.model.edit({id: model.Id})">Edit</a>
+            </p>
+        </div>
+    </li>
+</ul>
