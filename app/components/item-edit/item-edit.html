@@ -1,18 +1,52 @@
-
-<div>
-    <p>
-        Name: <input type="text" ng-model="item.Name" ng-blur="item.put()" ng-enter="item.put()">
-        Price: <input type="text" ng-model="item.Price" ng-blur="item.put()" ng-enter="item.put()">
-    </p>
-    <p>
-        <a ng-click="delete(group, item)">
-            <span class="glyphicon glyphicon-remove"></span>
-        </a>
-        <a ng-if="item.Sort != group.Items.length - 1" ng-click="swapDown()">
-            <span class="glyphicon glyphicon-arrow-down"></span>
-        </a>
-        <a ng-if="item.Sort != 0">
-            <span class="glyphicon glyphicon-arrow-up" ng-click="swapUp()"></span>
-        </a>
-    </p>
+<div class="container">
+    <div class="row">
+        <div class="col-xs-6">
+            <div class="form-group">
+                <label class="control-label">Name</label>
+                <div class="input-group">
+                    <input type="text" class="form-control" ng-model="item.Name" ng-blur="item.put()"
+                           ng-enter="item.put()">
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-6">
+            <div class="form-group">
+                <label class="control-label">Tooltip</label>
+                <div class="input-group">
+                    <input type="text" class="form-control" ng-model="item.Tooltip" ng-blur="item.put()" ng-enter="item.put()">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-6">
+            <div class="form-group" tooltip="The max number of this item that can be added, default is 1.">
+                <label class="control-label">Max Count</label>
+                <div class="input-group">
+                    <input type="text" class="form-control" ng-model="item.MaxCount" ng-blur="item.put()"
+                           ng-enter="item.put()">
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-6">
+            <div class="form-group">
+                <label class="control-label">Price</label>
+                <div class="input-group">
+                    <span class="input-group-addon">$</span>
+                    <input type="text" class="form-control" ng-model="item.Price" ng-blur="item.put()"
+                           ng-enter="item.put()">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-6">
+            <div class="form-group">
+                <label class="control-label">Selected by Default</label>
+                <div class="input-group">
+                    <input type="checkbox" ng-model="item.Default" ng-blur="item.put()" ng-enter="item.put()">
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

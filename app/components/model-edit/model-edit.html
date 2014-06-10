@@ -1,0 +1,72 @@
+<accordion>
+    <accordion-group is-open="true" heading="{{ model.Name }}">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            <label class="control-label">Name</label>
+
+                            <div class="input-group">
+                                <input type="text" class="form-control" ng-model="model.Name" ng-blur="model.put()"
+                                       ng-enter="model.put()">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            <label class="control-label">Currently Enabled</label>
+
+                            <div class="input-group">
+                                <input type="checkbox" ng-model="model.Enabled" ng-blur="model.put()"
+                                       ng-enter="model.put()">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="form-group">
+                            <label class="control-label">Description</label>
+
+                            <div class="input-group">
+                                <text-angular ng-model="model.Description" ng-blur="model.put()"
+                                              ta-toolbar="[['h1','h2','h3'],['bold','italics'],['ul', 'ol', 'insertImage', 'insertLink', 'html']]"></text-angular>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        <h4>Groups</h4>
+        <accordion >
+            <accordion-group ng-repeat="group in model.Groups | orderBy:'Sort'" ng-init="expand = false" is-open="expand">
+                <accordion-heading>
+                    {{ group.Name }} - {{ group.Items.length }} Items
+                    <i class="pull-right glyphicon"
+                       ng-class="{'glyphicon-chevron-down': expand, 'glyphicon-chevron-right': !expand}"></i>
+                </accordion-heading>
+
+                <group-edit group="group" ></group-edit>
+
+                <button class="btn btn-default btn-sm" ng-click="model.groupDelete(group)">
+                    Delete Group
+                </button>
+                <button class="btn btn-default btn-sm" ng-disabled="group.Sort === model.Groups.length - 1" ng-click="model.groupDown(group)">
+                    Move Down<span class="glyphicon glyphicon-arrow-down"></span>
+                </button>
+                <button class="btn btn-default btn-sm" ng-disabled="group.Sort === 0" ng-click="model.groupUp(group)">
+                    Move Up<span class="glyphicon glyphicon-arrow-up"></span>
+                </button>
+            </accordion-group>
+        </accordion>
+        <p>
+            <button class="btn btn-default btn-sm" ng-click="model.groupAdd()">Add Group</button>
+            <button class="btn btn-default btn-sm" ng-click="model.put()">Save</button>
+        </p>
+    </accordion-group>
+</accordion>
+
+
+
+
+

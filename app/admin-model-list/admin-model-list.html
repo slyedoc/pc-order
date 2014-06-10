@@ -1,16 +1,15 @@
-
 <h3>Model List</h3>
-<ul ng-repeat="model in models">
-    <li>
-        <div>
-            <p>
-                {{ model.Name }}
-            </p>
-            <p ng-bind-html=" model.Description | unsafe">
-            </p>
-            <p>
-                <a ui-sref="admin.model.edit({id: model.Id})">Edit</a>
-            </p>
-        </div>
-    </li>
-</ul>
+
+<panel class="panel panel-default"  ng-repeat="model in models">
+    <div class="panel-heading">
+        <h3 class="panel-title">{{ model.Name }}</h3>
+    </div>
+    <div class="panel-body">
+        <p ng-bind-html="model.Description | unsafe">
+        </p>
+        <button class="btn btn-default btn-sm" ui-sref="^.edit({id: model.Id})">Edit</button>
+        <button class="btn btn-default btn-sm" ng-click="models.delete(model)">Delete</button>
+    </div>
+</panel>
+
+<button class="btn btn-default btn-sm" ng-click="add()">Add Model</button>

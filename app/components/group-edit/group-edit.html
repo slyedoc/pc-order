@@ -1,0 +1,32 @@
+<p>
+    Name: <input type="text" ng-model="group.Name" ng-blur="group.put()">
+</p>
+<p>
+    Description :
+    <text-angular style="height: 200px" ng-model="group.Description" ng-blur="group.put()"
+                  ta-toolbar="[['h1','h2','h3'],['bold','italics'],['ul', 'ol', 'insertImage', 'insertLink', 'html']]">
+    </text-angular>
+</p>
+
+<accordion >
+    <accordion-group ng-repeat="item in group.Items | orderBy:'Sort'" ng-init="expand = false">
+        <accordion-heading>
+            {{ item.Name }}
+            <i class="pull-right glyphicon"
+               ng-class="{'glyphicon-chevron-down': expand, 'glyphicon-chevron-right': !expand}"></i>
+        </accordion-heading>
+
+        <item-edit item="item"></item-edit>
+
+        <button class="btn btn-default btn-sm" ng-click="group.itemDelete(item)">
+            Delete<span class="glyphicon glyphicon-remove"></span>
+        </button>
+        <button class="btn btn-default btn-sm" ng-disabled="item.Sort === group.Items.length - 1" ng-click="group.itemDown(item)">
+            Move Down<span class="glyphicon glyphicon-arrow-down"></span>
+        </button>
+        <button class="btn btn-default btn-sm" ng-disabled="item.Sort === 0" ng-click="group.itemUp(item)">
+            Move Up<span class="glyphicon glyphicon-arrow-up"></span>
+        </button>
+    </accordion-group>
+</accordion>
+<button class="btn btn-default btn-sm" ng-click="group.itemAdd()">Add Item</button>

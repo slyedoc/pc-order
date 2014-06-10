@@ -1,55 +1,8 @@
-<p>
-    <a ui-sref="admin.model.list">Back to list.</a>
-</p>
+<div class="row">
+    <div class="col-lg-12">
+        <a ui-sref="^.list">Back to list.</a>
+    </div>
+</div>
 
-<h4>Edit Model</h4>
-<dl class="dl-horizontal">
-    <dt>Name</dt>
-    <dd><input type="text" ng-model="model.Name" ng-blur="model.put()" autofocus></dd>
-    <dt>Description</dt>
-    <dd>
-        <text-angular style="height: 200px" ng-model="model.Description" ng-blur="model.put()"
-                      ta-toolbar="[['h1','h2','h3'],['bold','italics'],['ul', 'ol', 'insertImage', 'insertLink', 'html']]"></text-angular>
-    </dd>
-</dl>
+<model-edit model="model"></model-edit>
 
-<h4>Groups</h4>
-<accordion ng-repeat="group in model.Groups | orderBy:'Sort'" ng-init="expand = true">
-    <accordion-group heading="{{ group.Name }}" is-open="expand">
-        <accordion-heading>
-            {{ group.Name }}
-            <i class="pull-right glyphicon"
-               ng-class="{'glyphicon-chevron-down': expand, 'glyphicon-chevron-right': !expand}"></i>
-        </accordion-heading>
-        <p>
-            Name: <input type="text" ng-model="group.Name" ng-blur="group.put()" custom-autofocus="$index == edit.focusGroupIndex">
-        </p>
-
-        <p>
-            Description:
-            <text-angular style="height: 200px" ng-model="group.Description" ng-blur="group.put()"
-                          ta-toolbar="[['h1','h2','h3'],['bold','italics'],['ul', 'ol', 'insertImage', 'insertLink', 'html']]"></text-angular>
-        </p>
-        <ul ng-repeat="item in group.Items | orderBy:'Sort'">
-            <li>
-                <div item-edit="item" item-edit-group="group" item-edit-delete="edit.deleteItem"></div>
-            </li>
-        </ul>
-        <button class="btn btn-default btn-sm" ng-click="edit.addItem(group)">Add Item</button>
-        <button class="btn btn-default btn-sm" ng-click="edit.deleteGroup(group)">Delete Group</button>
-        <button class="btn btn-default btn-sm" ng-if="group.Sort != model.Groups.length - 1"
-                ng-click="edit.groupMove.down(group)">
-            Move Down<span class="glyphicon glyphicon-arrow-down"></span>
-        </button>
-        <button class="btn btn-default btn-sm" ng-if="group.Sort != 0" ng-click="edit.groupMove.up(group)">
-            Move Up<span class="glyphicon glyphicon-arrow-up"></span>
-        </button>
-    </accordion-group>
-</accordion>
-<p>
-    <button class="btn btn-default btn-sm" ng-click="edit.addGroup()">Add Group</button>
-    <button class="btn btn-default btn-sm" ng-click="edit.deleteModel()">Delete Model</button>
-</p>
-<p>
-    <button class="btn btn-default btn-sm" ng-click="model.put()">Save</button>
-</p>
